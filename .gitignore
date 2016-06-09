@@ -1,4 +1,5 @@
 /nbproject
 /vendor
+*.retry
 composer.lock
 LocalSettings.php
