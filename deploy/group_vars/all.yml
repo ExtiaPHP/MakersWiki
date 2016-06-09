@@ -9,10 +9,14 @@ ansistrano_current_via: "symlink" # Deployment strategy who code should be deplo
 ansistrano_shared_paths:  # Shared paths to symlink to release dir
     - vendor
     - node_modules
+    - data
+    - LocalSettings.php
 
-ansistrano_shared_files: []
+ansistrano_shared_files:
+    - LocalSettings.php
 
 ansistrano_shared_folders:
+    - data
     - vendor
     - node_modules
 
