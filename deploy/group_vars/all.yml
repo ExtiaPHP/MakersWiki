@@ -1,0 +1,40 @@
+---
+application: MakersWiki
+
+ansistrano_deploy_from: "{{ playbook_dir }}" # Where my local project is (relative or absolute path)
+ansistrano_deploy_to: "/home/deploy/www/{{ application }}" # Base path to deploy to.
+ansistrano_version_dir: "releases" # Releases folder name
+ansistrano_current_dir: "current" # Softlink name. You should rarely changed it.
+ansistrano_current_via: "symlink" # Deployment strategy who code should be deployed to current path. Options are symlink or rsync
+ansistrano_shared_paths:  # Shared paths to symlink to release dir
+    - vendor
+    - node_modules
+    - web/uploads
+    - var/logs
+    - app/var
+    - app/config/parameters.yml
+    - app/config/parameters_env.yml
+
+ansistrano_shared_files:
+    - app/config/parameters.yml
+    - app/config/parameters_env.yml
+
+ansistrano_shared_folders:
+    - vendor
+    - node_modules
+    - web/uploads
+    - var/logs
+    - app/var
+
+ansistrano_keep_releases: 3 # Releases to keep after a new deployment. See "Pruning old releases".
+ansistrano_deploy_via: "git" # Method used to deliver the code to the server. Options are copy, rsync, git, s3 or download.
+ansistrano_allow_anonymous_stats: false
+
+# Variables used in the Git deployment strategy
+ansistrano_git_repo: "git@github.com:ExtiaPHP/{{ application }}.git" # Location of the git repository
+ansistrano_git_branch: master # What version of the repository to check out. This can be the full 40-character SHA-1 hash, the literal string HEAD, a branch name, or a tag name
+ansistrano_git_identity_key_path: "" # If specified this file is copied over and used as the identity key for the git commands, path is relative to the playbook in which it is used
+
+restart_nginx: true
+
+symfony_env: prod

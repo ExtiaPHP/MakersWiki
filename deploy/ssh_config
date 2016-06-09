@@ -1,0 +1,12 @@
+Host *
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+
+host extia-sites.bastion1
+    hostname 104.155.121.47
+    port 22
+
+host release
+    hostname 10.240.0.18
+    port 22
+    ProxyCommand ssh -F ssh_config -W %h:%p %r@extia-sites.bastion1
