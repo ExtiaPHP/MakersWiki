@@ -1,0 +1,18 @@
+---
+- hosts: all
+  remote_user: deploy
+  become: no
+  become_method: sudo
+  gather_facts: no
+
+  vars:
+    # ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/rollback/before-symlink-tasks.yml"
+    # ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/rollback/after-symlink-tasks.yml"
+    # ansistrano_before_cleanup_tasks_file: "{{ playbook_dir }}/rollback/before-cleanup-tasks.yml"
+    # ansistrano_after_cleanup_tasks_file: "{{ playbook_dir }}/rollback/after-cleanup-tasks.yml"
+
+  environment:
+    SYMFONY_ENV: "{{ symfony_env }}"
+
+  roles:
+    - carlosbuenosvinos.ansistrano-rollback

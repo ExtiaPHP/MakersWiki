@@ -1,0 +1,3 @@
+---
+- name: Install PHP vendors by composer
+  composer: command=install no_dev=yes optimize_autoloader=yes working_dir={{ ansistrano_release_path.stdout }}

@@ -1,0 +1,21 @@
+---
+- name: Ensure shared folders exist
+  file:
+    path: "{{ ansistrano_shared_path.stdout }}/{{ item.name|default(item) }}"
+    mode: "{{ item.mode|default('u=rwX,go=rX') }}"
+    state: directory
+  with_items: "{{ ansistrano_shared_folders }}"
+
+- name: Ensure shared files directories exist
+  file:
+    path: "{{ ansistrano_shared_path.stdout }}/{{ item.name|default(item)|dirname }}"
+    mode: "{{ item.mode|default('u=rwX,go=rX') }}"
+    state: directory
+  with_items: "{{ ansistrano_shared_files }}"
+
+- name: Ensure shared files exist
+  file:
+    path: "{{ ansistrano_shared_path.stdout }}/{{ item.name|default(item) }}"
+    mode: "{{ item.mode|default('u=rw,go=r') }}"
+    state: touch
+  with_items: "{{ ansistrano_shared_files }}"
