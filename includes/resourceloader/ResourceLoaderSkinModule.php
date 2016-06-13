@@ -33,7 +33,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$logo = $this->getConfig()->get( 'Logo' );
 		$logoHD = $this->getConfig()->get( 'LogoHD' );
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+		$styles['all'][] = '.mw-wiki-logo { background-size: cover; background-image: ' .
 			CSSMin::buildUrlValue( $logo ) .
 			'; }';
 		if ( $logoHD ) {
